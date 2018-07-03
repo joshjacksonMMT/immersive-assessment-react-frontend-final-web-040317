@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
+
+//Components
 import TransactionsList from './TransactionsList'
 import CategorySelector from './CategorySelector'
-import {transactions} from '../transactionsData'
 
-class AccountContainer extends Component {
-  constructor() {
-    super()
-    //... your code here
-  }
+//Data
+import { transactions } from '../transactionsData'
 
-  handleChange() {
-    //... your code here
-  }
 
-  render() {
+/** Holds the CategorySelector and TransactionList*/
+class AccountContainer extends Component
+{
+  render()
+  {
     console.log(transactions)
     return (
       <div className="ui grid container">
@@ -22,8 +21,9 @@ class AccountContainer extends Component {
 
         <TransactionsList />
 
+
       </div>
-    )
+    );
   }
 }
 

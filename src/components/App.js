@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+
+//Components
 import AccountContainer from './AccountContainer'
 
 
-class App extends Component {
-  render() {
+class App extends Component
+{
+  render()
+  {
     return (
       <div className="ui raised segment">
         <div className="ui center aligned segment violet inverted">
@@ -13,7 +17,7 @@ class App extends Component {
         <AccountContainer />
 
       </div>
-    )
+    );
   }
 }
 
