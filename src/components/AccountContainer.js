@@ -7,13 +7,26 @@ import CategorySelector from './CategorySelector'
 //Data
 import { transactions } from '../transactionsData'
 
+//External Functions
+import getTransactionData from '../getTransactionData';
+
 
 /** Holds the CategorySelector and TransactionList*/
 class AccountContainer extends Component
 {
+  constructor(props)
+  {
+    super(props);
+
+    getTransactionData("https://boiling-brook-94902.herokuapp.com/transactions", (data) =>
+    {
+      this.setState({ transactionData: data });
+    });
+  }
   state =
     {
-      activeCategory: "All"
+      activeCategory: "All",
+      transactionData: null
     };
 
   changeCategory = (newCategory) =>
@@ -26,11 +39,12 @@ class AccountContainer extends Component
     return (
       <div className="ui grid container">
 
-        <h1>{this.state.activeCategory}</h1>
-
         <CategorySelector activeCategory={this.state.activeCategory} changeCategory={this.changeCategory} />
 
-        <TransactionsList transactionData={transactions} activeCategory={this.state.activeCategory} />
+
+        {/*TODO: Probably replace with nice loading animation whilst data is being loaded*/}
+        {this.state.transactionData === null ? <p>Loading Data...</p> :
+          <TransactionsList transactionData={this.state.transactionData} activeCategory={this.state.activeCategory} />}
 
       </div>
     );

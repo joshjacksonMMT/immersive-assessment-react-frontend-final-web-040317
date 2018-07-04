@@ -4,33 +4,29 @@ import React from 'react'
 import Transaction from './Transaction';
 
 
+/**
+ * Takes the transaction data and creates an array of <Transaction /> components that
+ * match the active category, or will create a <Transaction /> component for every piece
+ * of data if the active category is "All". It will then return the array of components to
+ * be rendered within the TransactionsList render() function.
+ */
 const renderTransactions = (transactionData, activeCategory) =>
 {
-  /*TODO: Loop through the data and create a <Transaction /> component for every
-  object of data within the transactionData prop that matches the activeCategory prop. */
-
   let transactionComponents = [];
 
   for (let i = 0; i < transactionData.length; i++)
   {
-    if (transactionData[i].category === activeCategory)
+    if (activeCategory === "All" || transactionData[i].category === activeCategory)
     {
-      transactionComponents.push(<Transaction )
+      transactionComponents.push(<Transaction key={transactionData[i].id} postedAt={transactionData[i].posted_at} description={transactionData[i].description} category={transactionData[i].category} amount={transactionData[i].amount} />);
     }
   }
 
+  return transactionComponents;
 }
 
 const TransactionsList = (props) =>
 {
-  /*
-    Probably have TransactionsList take a current category prop and then have a renderable
-    function in here that will render the right amount of Transaction components ---
-
-    When category is changed, update (somewhere, probably state on a major/category related component) the list to
-    only feature objects that have a category that is the same.
-  */
-
   const { transactionData, activeCategory } = props;
 
   return (
