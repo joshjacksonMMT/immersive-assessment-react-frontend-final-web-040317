@@ -7,14 +7,16 @@ import React from 'react'
   be a moveable block of data.
 */
 
-const Transaction = () =>
+const Transaction = (props) =>
 {
+  const { postedAt, description, category, amount } = props;
+
   return (
     <tr>
-      <td>2017-02-28 11:00:00</td>
-      <td>Leather Pants, Gap co.</td>
-      <td>Fashion</td>
-      <td>-20000</td>
+      <td>{postedAt}</td>
+      <td>{description}</td>
+      <td>{category}</td>
+      <td>{amount}</td> {/*TODO: Create a helper function to convert this to money*/}
     </tr>
   );
 }

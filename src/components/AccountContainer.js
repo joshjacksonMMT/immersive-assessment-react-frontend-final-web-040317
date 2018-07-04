@@ -11,16 +11,26 @@ import { transactions } from '../transactionsData'
 /** Holds the CategorySelector and TransactionList*/
 class AccountContainer extends Component
 {
+  state =
+    {
+      activeCategory: "All"
+    };
+
+  changeCategory = (newCategory) =>
+  {
+    this.setState({ activeCategory: newCategory });
+  }
+
   render()
   {
-    console.log(transactions)
     return (
       <div className="ui grid container">
 
-        <CategorySelector />
+        <h1>{this.state.activeCategory}</h1>
 
-        <TransactionsList />
+        <CategorySelector activeCategory={this.state.activeCategory} changeCategory={this.changeCategory} />
 
+        <TransactionsList transactionData={transactions} activeCategory={this.state.activeCategory} />
 
       </div>
     );
